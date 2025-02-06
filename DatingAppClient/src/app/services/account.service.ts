@@ -28,6 +28,14 @@ export class AccountService {
   }
 
   signup(model: any) {
-    return this.http.post(this.baseUrl + 'account/signup', model);
+    return this.http.post<User>(this.baseUrl + 'account/signup', model).pipe(
+      map(user => {
+        if (user) {
+          this.currentUser.set(user);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        return user;
+      })
+    );
   }
 }
