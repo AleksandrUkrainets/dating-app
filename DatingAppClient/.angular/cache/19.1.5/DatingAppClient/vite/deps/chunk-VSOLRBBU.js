@@ -1,6 +1,6 @@
 import {
   DOCUMENT
-} from "./chunk-HZNA4K44.js";
+} from "./chunk-E66YO3XP.js";
 import {
   ANIMATION_MODULE_TYPE,
   Inject,
@@ -32,6 +32,14 @@ var AnimationMetadataType;
   AnimationMetadataType2[AnimationMetadataType2["Stagger"] = 12] = "Stagger";
 })(AnimationMetadataType || (AnimationMetadataType = {}));
 var AUTO_STYLE = "*";
+function trigger(name, definitions) {
+  return {
+    type: AnimationMetadataType.Trigger,
+    name,
+    definitions,
+    options: {}
+  };
+}
 function animate(timings, styles = null) {
   return {
     type: AnimationMetadataType.Animate,
@@ -51,6 +59,22 @@ function style(tokens) {
     type: AnimationMetadataType.Style,
     styles: tokens,
     offset: null
+  };
+}
+function state(name, styles, options) {
+  return {
+    type: AnimationMetadataType.State,
+    name,
+    styles,
+    options
+  };
+}
+function transition(stateChangeExpr, steps, options = null) {
+  return {
+    type: AnimationMetadataType.Transition,
+    expr: stateChangeExpr,
+    animation: steps,
+    options
   };
 }
 var AnimationBuilder = class _AnimationBuilder {
@@ -442,9 +466,12 @@ var ɵPRE_STYLE = "!";
 export {
   AnimationMetadataType,
   AUTO_STYLE,
+  trigger,
   animate,
   sequence,
   style,
+  state,
+  transition,
   AnimationBuilder,
   NoopAnimationPlayer,
   AnimationGroupPlayer,
@@ -459,4 +486,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-JBHLHTMJ.js.map
+//# sourceMappingURL=chunk-VSOLRBBU.js.map
