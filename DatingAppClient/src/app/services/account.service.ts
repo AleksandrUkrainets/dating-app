@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 })
 export class AccountService {
   private http = inject(HttpClient);
-  baseUrl: string = 'https://localhost:7198/api/';
+  baseUrl: string = 'http://18.195.20.75:8080/api/'; //  'https://localhost:7198/api/'
   currentUser = signal<User | null>(null);
 
   signin(model: any) {

@@ -15,20 +15,21 @@ public class AccountController(DataContext context, ITokenService tokenService) 
     public async Task<ActionResult<UserDto>> SignUp(SignUpDto signUpDto)
     {
         if (await IsUserExist(signUpDto.UserName)) return BadRequest(" User name is exist");
+        return Ok();
 
-        using var hmac = new HMACSHA512();
+        //using var hmac = new HMACSHA512();
 
-        var newUser = new AppUser
-        {
-            UserName = signUpDto.UserName,
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(signUpDto.Password)),
-            PasswordSalt = hmac.Key
-        };
+        //var newUser = new AppUser
+        //{
+        //    UserName = signUpDto.UserName,
+        //    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(signUpDto.Password)),
+        //    PasswordSalt = hmac.Key
+        //};
 
-        context.Add<AppUser>(newUser);
-        await context.SaveChangesAsync();
+        //context.Add<AppUser>(newUser);
+        //await context.SaveChangesAsync();
 
-        return new UserDto { UserName = signUpDto.UserName, Token = tokenService.CreateToken(newUser) };
+        //return new UserDto { UserName = signUpDto.UserName, Token = tokenService.CreateToken(newUser) };
     }
 
 

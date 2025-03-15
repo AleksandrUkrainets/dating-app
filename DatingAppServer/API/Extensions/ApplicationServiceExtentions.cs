@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Data.Repositories;
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +18,12 @@ public static class ApplicationServiceExtentions
 
         services.AddDbContext<DataContext>(opt =>
         {
-            opt.UseSqlite(configuration.GetConnectionString("DefaultConnectionString"));
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            opt.UseNpgsql(configuration.GetConnectionString("DefaultConnectionString"));
         });
 
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }

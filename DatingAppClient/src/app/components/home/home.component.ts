@@ -23,9 +23,9 @@ export class HomeComponent {
   cancelRegister(event: boolean) {
     this.registerMode = event;
   }
-
+  //'https://18.185.5.227:8080/api/'; //https://localhost:7198
   private getUsers(): void {
-    this.http.get('https://localhost:7198/api/users').subscribe({
+    this.http.get('http://18.195.20.75:8080/api/users').subscribe({
       next: data => (this.users = data),
       error: er => console.log(er),
       complete: () => console.log('Get users completed'),
